@@ -1,4 +1,5 @@
 import 'package:QRScanner/constant.dart';
+import 'package:QRScanner/screens/generate.dart';
 import 'package:qrscan/qrscan.dart' as scanner;
 import 'package:flutter/material.dart';
 
@@ -18,19 +19,25 @@ class _HomescreenState extends State<Homescreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
+                decoration: box,
                 margin: EdgeInsets.all(4),
-                color: Colors.purple,
                 width: MediaQuery.of(context).size.width * 0.9,
                 child: FlatButton(
-                    onPressed: null,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Qrscan()),
+                      );
+                    },
                     child: Text(
                       "Generate QR Code",
                       style: tstyle,
                     )),
               ),
               Container(
+                  decoration: box,
+                  margin: EdgeInsets.all(4),
                   width: MediaQuery.of(context).size.width * 0.9,
-                  color: Colors.purple,
                   child: FlatButton(
                       onPressed: () async {
                         result = await scanner.scan();
@@ -40,13 +47,14 @@ class _HomescreenState extends State<Homescreen> {
               result == null
                   ? Container()
                   : Container(
+                      margin: EdgeInsets.all(4),
                       child: Column(
                         children: [
                           Text(
                             "Output of QR Code",
                             style: tstyle,
                           ),
-                          TextField()
+                          Text(result)
                         ],
                       ),
                     )
