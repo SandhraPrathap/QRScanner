@@ -48,6 +48,7 @@ class _QrscanState extends State<Qrscan> {
                   child: FlatButton(
                       onPressed: () async {
                         result = await generateBarCode(codecontroller.text);
+                        setState(() {});
                         print(result.toString());
                       },
                       child: Text(
